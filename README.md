@@ -1,8 +1,8 @@
 Documentação: Sistema de Acompanhamento de Tarefas
+
 O sistema de acompanhamento de tarefas foi desenvolvido para permitir que funcionários, supervisores e gerentes interajam com um sistema centralizado de gerenciamento de tarefas, cada um com suas permissões e funcionalidades específicas.
+
 1. Equipe de Desenvolvimento
-Nome Completo
-Matrícula
 Carlos Cesar Passos
 12724115774
 Felipe Costa 
@@ -36,6 +36,7 @@ Autenticação: Sistema integrado para gerenciar o cadastro, login e as sessões
 APIs: Geração automática de APIs para interagir com o banco de dados de forma segura.
 Navegador Web:
 Qualquer navegador moderno com suporte completo a JavaScript, como Google Chrome, Mozilla Firefox, Safari ou Microsoft Edge.
+
 3. Instruções para Instalação e Execução
 Passo 1: Instalar o Pré-requisito (Node.js)
 Acesse: https://nodejs.org/
@@ -56,16 +57,19 @@ No terminal, digite `cd ` (com um espaço).
 Arraste a pasta do projeto para o terminal.
 Pressione Enter.
 Exemplo: `cd C:\\Users\\SeuUsuario\\Downloads\\projeto-loja-de-roupas-17`
+
 Passo 4: Executar os Comandos
 Instalar as dependências: Digite `npm install` e pressione Enter.
 Aguarde a conclusão.
 Iniciar o site: Digite `npm run dev` e pressione Enter.
+
 Passo 5: Acessar o Site
 Após `npm run dev`, copie o endereço local (ex: `http://localhost:8080/`).
 Abra o navegador.
 Cole o endereço e pressione Enter.
 O terminal precisa ficar aberto. Use Ctrl + C para desligar o site
 Configuração Inicial do Banco de Dados
+
 O projeto utiliza o Supabase para o banco de dados. Ja existe usuarios ja criados:
 Email: gerente@loja.com
 Senha: 123456
@@ -81,12 +85,10 @@ Senha: 123456
 
 Email: funcionario3@loja.com
 Senha: 123456
+
 4. Justificativa para a Abordagem de Comunicação Escolhida
 A comunicação entre o cliente (frontend em React) e o servidor (backend Supabase) foi implementada utilizando a biblioteca @supabase/supabase-js, que funciona como um cliente para a API gerada pelo Supabase. A escolha desta abordagem em detrimento de implementações de mais baixo nível, como Sockets puros ou RPC, foi estratégica e baseada nos seguintes pilares:
 Produtividade e Abstração: A principal vantagem é a alta produtividade. A biblioteca cliente do Supabase abstrai a complexidade da comunicação de rede. Em vez de construir requisições HTTP manualmente ou gerenciar conexões de Sockets, o desenvolvimento se concentra na lógica de negócio, utilizando métodos diretos e intuitivos (.from('tabela').select(), .insert(), etc.) que são traduzidos em chamadas de API seguras e otimizadas.
-
-
-
 Segurança Integrada (Row Level Security): O Supabase utiliza a segurança a nível de linha (RLS) do PostgreSQL como um pilar central. Isso permite que as regras de acesso (ex: "um funcionário só pode ver suas próprias tarefas") sejam definidas diretamente no banco de dados. A API gerada respeita essas políticas automaticamente, garantindo que a comunicação seja segura por padrão e evitando a exposição acidental de dados. Implementar essa camada de segurança manualmente seria complexo e propenso a erros.
 Escalabilidade e Manutenção: Utilizar uma API RESTful padronizada, gerenciada pelo Supabase, garante que a arquitetura é escalável e de fácil manutenção. Se, no futuro, for necessário criar outros clientes (como um aplicativo móvel), eles poderão consumir a mesma API, reutilizando toda a lógica de negócio e segurança já implementada no backend.
 Funcionalidades em Tempo Real: Embora a comunicação principal seja via API (requisição-resposta), o Supabase também oferece suporte a subscrições em tempo real (realtime subscriptions) sobre a mesma API. Isso permite que o cliente "escute" mudanças no banco de dados (novas tarefas, atualizações de status) e atualize a interface do usuário instantaneamente, sem a necessidade de implementar uma complexa infraestrutura de WebSockets do zero.
