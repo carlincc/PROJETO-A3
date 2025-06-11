@@ -87,6 +87,7 @@ Email: funcionario3@loja.com
 Senha: 123456
 
 4. Justificativa para a Abordagem de Comunicação Escolhida
+
 A comunicação entre o cliente (frontend em React) e o servidor (backend Supabase) foi implementada utilizando a biblioteca @supabase/supabase-js, que funciona como um cliente para a API gerada pelo Supabase. A escolha desta abordagem em detrimento de implementações de mais baixo nível, como Sockets puros ou RPC, foi estratégica e baseada nos seguintes pilares:
 Produtividade e Abstração: A principal vantagem é a alta produtividade. A biblioteca cliente do Supabase abstrai a complexidade da comunicação de rede. Em vez de construir requisições HTTP manualmente ou gerenciar conexões de Sockets, o desenvolvimento se concentra na lógica de negócio, utilizando métodos diretos e intuitivos (.from('tabela').select(), .insert(), etc.) que são traduzidos em chamadas de API seguras e otimizadas.
 Segurança Integrada (Row Level Security): O Supabase utiliza a segurança a nível de linha (RLS) do PostgreSQL como um pilar central. Isso permite que as regras de acesso (ex: "um funcionário só pode ver suas próprias tarefas") sejam definidas diretamente no banco de dados. A API gerada respeita essas políticas automaticamente, garantindo que a comunicação seja segura por padrão e evitando a exposição acidental de dados. Implementar essa camada de segurança manualmente seria complexo e propenso a erros.
